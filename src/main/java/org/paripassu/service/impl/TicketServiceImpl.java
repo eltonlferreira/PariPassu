@@ -2,7 +2,6 @@ package org.paripassu.service.impl;
 
 import java.util.Collection;
 import java.util.Queue;
-import java.util.Random;
 import java.util.TreeSet;
 import java.util.concurrent.PriorityBlockingQueue;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -18,7 +17,7 @@ import org.paripassu.service.TicketService;
 @Named
 @ApplicationScoped
 public class TicketServiceImpl implements TicketService {
-
+	private final int FINAL = 10000;
 	// garantir numeros unicos
 	private AtomicInteger preferCounter = new AtomicInteger();
 	private AtomicInteger normalCounter = new AtomicInteger();
@@ -57,8 +56,10 @@ public class TicketServiceImpl implements TicketService {
 
 	@Override
 	public void resetTicketSequence(Integer start) {
-		preferCounter.set(start);
-		normalCounter.set(start);
+		if (start > 0) {
+			preferCounter.set(start % FINAL == 0 ? 1 : start);
+			normalCounter.set(start % FINAL == 0 ? 1 : start);
+		}
 	}
 
 	@Override
@@ -69,32 +70,21 @@ public class TicketServiceImpl implements TicketService {
 
 	// Metodo simples para gerar senhas
 	private AbstractTicket makeNormalTicket() {
-		return new NormalTicket(normalCounter.incrementAndGet());
+		int pos = normalCounter.incrementAndGet();
+		if (pos % FINAL == 0) {
+			normalCounter.set(0);
+			return new NormalTicket(normalCounter.incrementAndGet());
+		}
+		return new NormalTicket(pos);
 	}
 
 	private AbstractTicket makePreferencialTicket() {
-		return new PriorityTicket(preferCounter.incrementAndGet());
-	}
-
-	public static void main(String[] args) {
-		TicketServiceImpl service = new TicketServiceImpl();
-
-		Random rand = new Random();
-		for (int i = 0; i < 1000; i++) {
-			if (rand.nextInt(4) != 3) {
-				service.takeNormal();
-			} else {
-				service.takePreferencial();
-			}
+		int pos = preferCounter.incrementAndGet();
+		if (pos % FINAL == 0) {
+			preferCounter.set(0);
+			return new PriorityTicket(preferCounter.incrementAndGet());
 		}
-
-		for (int i = 0; i < 1000; i++) {
-			System.out.printf("Ticket %s\n", service.nextTicket());
-		}
-
-		for (int i = 0; i < 10; i++) {
-			System.out.printf("Ticket %s\n", service.nextTicket());
-		}
+		return new PriorityTicket(pos);
 	}
 
 }
