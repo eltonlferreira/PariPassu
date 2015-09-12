@@ -1,3 +1,9 @@
-The OpenShift `jbossas` cartridge documentation can be found at:
+Projeto PariPassu
+=
+Maven, J2EE, Rest-WS, AngularJS, Bootstrap e Swagger.
+-
 
-https://github.com/openshift/origin-server/tree/master/cartridges/openshift-origin-cartridge-jbossas/README.md
+> Foi construído utilizando :
+ - IDE Eclipse.
+ - Wildfly-8.2.1.Final
+ - Swagger UI http://swagger.io/swagger-ui/
