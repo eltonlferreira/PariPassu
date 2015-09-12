@@ -17,24 +17,23 @@
                   <form ng-submit="ctrl.submit()" name="myForm" class="form-horizontal">
                       <div class="row">
                           <div class="form-group col-md-12">
-                              <label class="col-md-2 control-lable" for="file">Sequencia</label>
-                              <div class="col-md-7">
-                                  <input type="text" ng-model="ctrl.sequence" name="seque" class="sequence form-control input-sm" placeholder="Entre com um inteiro da nova sequencia" required ng-minlength="1" value="0"/>
-                                  <div class="has-error" ng-show="myForm.$dirty">
-                                      <span ng-show="myForm.seque.$error.required">Este campo é requerido</span>
-                                      <span ng-show="myForm.seque.$error.minlength">Tamanho mínimo de 1 numero</span>
-                                      <span ng-show="myForm.seque.$invalid">Campo inválido</span>
+                              <label class="col-md-2 control-label label-lg" for="seque">Sequencia</label>
+                              <div class="col-md-4">
+                                  <input type="number" ng-model="ctrl.sequence" id="seque" name="seque" class="form-control input-lg" placeholder="Entre com um inteiro da nova sequencia" required min='0' max='9998'/>
+                                  <div class="has-error" >
+                                      <span ng-show="myForm.seque.$error.required">valor requerido</span>
+                                      <span ng-show="myForm.seque.$error.min">Número mínimo 1</span>
+                                      <span ng-show="myForm.seque.$error.max">Número maximo 9998</span>
+                                      <span ng-show="myForm.seque.$invalid">Não é um número válido</span>
                                   </div>
                              </div>
-                                                       <div class="form-actions floatRight">
-	                              <input type="submit"  value="Reinicia" class="btn btn-primary btn-sm" ng-disabled="myForm.$invalid">
-	                              <button type="button" ng-click="ctrl.resetTicket()" class="btn btn-primary btn-sm">Reiniciar ZERO</button>
-	                              <button type="button" ng-click="ctrl.reset()" class="btn btn-warning btn-sm">Limpar</button>
-                          </div>
-                             
+                             <div class="form-actions floatRight">
+	                              <input type="submit"  value="Reinicia" class="btn btn-primary btn-lg" ng-disabled="myForm.$invalid">
+	                              <button type="button" ng-click="ctrl.resetTicket()" class="btn btn-primary btn-lg">Reiniciar ZERO</button>
+	                              <button type="button" ng-click="ctrl.reset()" class="btn btn-warning btn-lg">Limpar</button>
+                          	 </div>
                           </div>
                       </div>
- 
                   </form>
               </div>
 

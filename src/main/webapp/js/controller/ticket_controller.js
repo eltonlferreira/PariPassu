@@ -62,8 +62,6 @@ App.controller('TicketController', ['$scope', 'TicketService', function($scope, 
                                 }
                        );
           };
-          self.takeNormal();
-          self.allTickets();
 
           self.lastTicket = function(){
               TicketService.lastOne()
@@ -96,6 +94,10 @@ App.controller('TicketController', ['$scope', 'TicketService', function($scope, 
                                }
                        );
           };
+
+          self.takeNormal();
+          self.lastTicket();
+          self.allTickets();
           
           self.submit = function() {
               if(angular.isUndefined(self.sequence) || self.sequence === null ){

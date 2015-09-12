@@ -1,12 +1,10 @@
-
-
 body, #mainWrapper {
-	height: 70%;
+	height: 80%;
 	background-color: rgb(245, 245, 245);
 }
 
 body, .form-control {
-	font-size: 12px !important;
+	font-size: 1.5rem !important;
 }
 
 .floatRight {
@@ -14,8 +12,14 @@ body, .form-control {
 	margin-right: 18px;
 }
 
+.floatLeft {
+	float: left;
+	margin-left: 18px;
+}
+
 .has-error {
 	color: red;
+	font-weight: bold;
 }
 
 .formcontainer {
@@ -28,8 +32,8 @@ body, .form-control {
 }
 
 .generic-container {
-	width: 80%;
-	margin-left: 20px;
+	margin-left: 10%;
+	margin-right: 10%;
 	margin-top: 20px;
 	margin-bottom: 20px;
 	padding: 20px;
